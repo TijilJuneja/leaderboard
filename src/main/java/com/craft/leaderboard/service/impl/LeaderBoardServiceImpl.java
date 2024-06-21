@@ -33,7 +33,7 @@ public class LeaderBoardServiceImpl implements LeaderBoardService {
         try {
             ValidationUtil.validatePublishScoreRequest(score);
             redisTemplate.opsForZSet().add("leaderboard", score.getId(), score.getScore());
-            log.info("publishScore -- ");
+            log.info("publishScore -- published player score for id :{}, and score :{}", score.getId(), score.getScore());
         }
         catch (LeaderboardException e){
             log.error("publishScore -- Exception in saving player Score in database", e);
